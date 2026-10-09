@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Banking System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Online Banking System</h1>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#account">Account</a>
+            <a href="#transfer">Transfer</a>
+            <a href="#bills">Bills</a>
+            <a href="#loan">Loans</a>
+
+            <!-- Register and Login -->
+            <a href="register.html">Register</a>
+            <a href="login.html">Login</a>
+
+            <button onclick="logout()">Logout</button>
+        </nav>
+    </header>
+
+    <section id="home" class="welcome">
+        <h2>Welcome to Online Banking</h2>
+        <p>Manage your accounts, transfers, bills and loans easily.</p>
+    </section>
+
+    <section id="account" class="container">
+        <h2>Account Details</h2>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Account Balance</h3>
+                <p id="balance">₹50,000</p>
+            </div>
+
+            <div class="card">
+                <h3>Account Number</h3>
+                <p>XXXX XXXX 1234</p>
+            </div>
+
+            <div class="card">
+                <h3>Account Type</h3>
+                <p>Savings Account</p>
+            </div>
+        </div>
+
+        <h2>Transaction History</h2>
+
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Amount</th>
+            </tr>
+
+            <tr>
+                <td>22-09-2026</td>
+                <td>Salary Credit</td>
+                <td class="credit">+₹25,000</td>
+            </tr>
+
+            <tr>
+                <td>20-09-2026</td>
+                <td>Electricity Bill</td>
+                <td class="debit">-₹2,000</td>
+            </tr>
+
+            <tr>
+                <td>18-09-2026</td>
+                <td>Online Shopping</td>
+                <td class="debit">-₹1,500</td>
+            </tr>
+        </table>
+    </section>
+
+    
+<section id="transfer" class="container">
+    <h2>Fund Transfer</h2>
+
+    <form onsubmit="transferMoney(event)">
+        <input type="text" id="receiver"
+               placeholder="Receiver Name" required>
+
+        <input type="text" id="receiverAccount"
+               placeholder="Receiver Account Number"
+               maxlength="16" required>
+
+        <input type="number" id="amount"
+               placeholder="Amount" required>
+
+        <button type="submit">Transfer Money</button>
+    </form>
+
+    <p id="transferMessage"></p>
+</section>
+
+
+
+    <section id="bills" class="container">
+        <h2>Bill Payments</h2>
+
+        <select id="billType">
+            <option value="">Select Bill</option>
+            <option>Electricity</option>
+            <option>Water</option>
+            <option>Internet</option>
+            <option>Mobile</option>
+        </select>
+
+        <input type="number" id="billAmount"
+               placeholder="Enter Amount">
+
+        <button onclick="payBill()">Pay Bill</button>
+
+        <p id="billMessage"></p>
+    </section>
+
+    <section id="loan" class="container">
+        <h2>Loan Request</h2>
+
+        <form onsubmit="requestLoan(event)">
+            <input type="text" id="loanName"
+                   placeholder="Your Name" required>
+
+            <select id="loanType" required>
+                <option value="">Select Loan Type</option>
+                <option>Personal Loan</option>
+                <option>Education Loan</option>
+                <option>Home Loan</option>
+                <option>Vehicle Loan</option>
+            </select>
+
+            <input type="number" id="loanAmount"
+                   placeholder="Loan Amount" required>
+
+            <button type="submit">Request Loan</button>
+        </form>
+
+        <p id="loanMessage"></p>
+    </section>
+
+
+<section id="expense" class="container">
+
+    <h2>Smart Expense Analyzer</h2>
+
+    <p>
+        Track your expenses and understand where your money is being spent.
+    </p>
+
+    <form onsubmit="addExpense(event)">
+
+        <input type="text"
+               id="expenseDescription"
+               placeholder="Expense Description"
+               required>
+
+        <input type="number"
+               id="expenseAmount"
+               placeholder="Enter Amount"
+               min="1"
+               required>
+
+        <select id="expenseCategory" required>
+
+            <option value="">Select Category</option>
+            <option value="Food">Food</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Travel">Travel</option>
+            <option value="Bills">Bills</option>
+            <option value="Education">Education</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Other">Other</option>
+
+        </select>
+
+        <button type="submit">
+            Add Expense
+        </button>
+
+    </form>
+
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Expenses</h3>
+            <p id="totalExpense">₹0</p>
+        </div>
+
+        <div class="card">
+            <h3>Highest Expense</h3>
+            <p id="highestExpense">₹0</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Transactions</h3>
+            <p id="expenseCount">0</p>
+        </div>
+
+    </div>
+
+
+    <div class="expense-analysis">
+
+        <h3>Smart Analysis</h3>
+
+        <p id="expenseAdvice">
+            Add your expenses to receive smart spending advice.
+        </p>
+
+    </div>
+
+
+    <h3>Expense History</h3>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+
+        <tbody id="expenseTable">
+        </tbody>
+
+    </table>
+
+</section>
+
+
+
+    <footer>
+        <p>© 2026 Online Banking System</p>
+        <p>🔒 Your information is protected with secure encryption.</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
